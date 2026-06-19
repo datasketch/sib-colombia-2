@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;900&family=Lato:wght@300;400;700;900&family=Inter:wght@400;500;700;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Tailwind v3 dropped the default button cursor; restore it for any clickable element. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  summary,
+  label[for] {
+    cursor: pointer;
+  }
+  a {
+    cursor: pointer;
+  }
+}
+
+/* react-slick — port of sib-colombia/styles/globals.css.
+   Outside @layer because react-slick adds these classes at runtime, so
+   Tailwind's content-based purge can't see them. */
+.slick-list {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  overflow-y: scroll !important;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.slick-list::-webkit-scrollbar {
+  display: none !important;
+}
+.slick-arrow {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  .slick-arrow {
+    display: block !important;
+  }
+}
+.slick-arrow::before {
+  content: "" !important;
+}
+.slick-prev.slick-disabled,
+.slick-next.slick-disabled {
+  opacity: 0.25 !important;
+}
+.slick-slider {
+  margin-bottom: 10px !important;
+}
+.slick-dots {
+  position: relative !important;
+  bottom: 10px !important;
+  margin-top: 20px !important;
+}
+.slick-dots li {
+  display: inline-block !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin: 0 10px !important;
+  border: 1px solid #09a274 !important;
+  border-radius: 100% !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+.slick-dots li button {
+  width: 10px !important;
+  height: 10px !important;
+  padding: 0 !important;
+}
+.slick-dots li button:before {
+  top: 0 !important;
+  left: 0 !important;
+  width: 10px !important;
+  height: 10px !important;
+  content: "" !important;
+  background-color: transparent !important;
+  opacity: 0 !important;
+}
+.slick-dots .slick-active {
+  background-color: #09a274 !important;
+}
+/* a11y (#33): keep keyboard focus and screen readers out of off-screen
+   slides. react-slick already sets aria-hidden on non-visible slides;
+   `visibility: hidden` then removes those slides AND their focusable
+   children (links/buttons) from the tab order and the accessibility tree.
+   Visible slides carry aria-hidden="false" and are left untouched, so there
+   is no visual change — only hidden slides stop trapping focus. */
+.slick-slide[aria-hidden="true"] {
+  visibility: hidden !important;
+}
+.slick-slide[aria-hidden="false"] {
+  visibility: visible !important;
+}
+
+/* react-simple-maps — geography paths get pointer cursor everywhere */
+.rsm-geography {
+  cursor: pointer;
+}
+
+/* react-markdown blocks (.rc-markdown) — applied to descriptive copy
+   inside tematica/grupo cards. Without these, inline links inside the
+   markdown (e.g. "[Lista de referencia ...](url)") render as plain
+   body text. Match prod's italic-underline link style. */
+.rc-markdown a {
+  font-style: italic;
+  text-decoration: underline;
+  color: inherit;
+}
+.rc-markdown a:hover {
+  color: #0080ff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background: #fbfbfb;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide scrollbars on horizontal carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

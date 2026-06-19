@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="601.613" height="770" viewBox="0 0 601.613 770">
+  <g id="Grupo_2083" data-name="Grupo 2083" transform="translate(-9421.387 286)">
+    <g id="Grupo_2082" data-name="Grupo 2082">
+      <rect id="Rectángulo_2791" data-name="Rectángulo 2791" width="601.613" height="35" transform="translate(9421.387 -286)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_3315" data-name="Rectángulo 3315" width="601.613" height="35" transform="translate(9421.387 -216)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_3317" data-name="Rectángulo 3317" width="601.613" height="35" transform="translate(9421.387 -146)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_3320" data-name="Rectángulo 3320" width="601.613" height="35" transform="translate(9421.387 -6)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_3327" data-name="Rectángulo 3327" width="601.613" height="35" transform="translate(9421.387 134)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_3333" data-name="Rectángulo 3333" width="601.613" height="35" transform="translate(9421.387 344)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_3329" data-name="Rectángulo 3329" width="601.613" height="35" transform="translate(9421.387 274)" fill="#f5f5f5"/>
+      <rect id="Rectángulo_2785" data-name="Rectángulo 2785" width="601.613" height="35" transform="translate(9421.387 -251)" fill="#fff"/>
+      <rect id="Rectángulo_3314" data-name="Rectángulo 3314" width="601.613" height="35" transform="translate(9421.387 -181)" fill="#fff"/>
+      <rect id="Rectángulo_3316" data-name="Rectángulo 3316" width="601.613" height="35" transform="translate(9421.387 -111)" fill="#fff"/>
+      <rect id="Rectángulo_3321" data-name="Rectángulo 3321" width="601.613" height="35" transform="translate(9421.387 29)" fill="#fff"/>
+      <rect id="Rectángulo_3326" data-name="Rectángulo 3326" width="601.613" height="35" transform="translate(9421.387 169)" fill="#fff"/>
+      <rect id="Rectángulo_3332" data-name="Rectángulo 3332" width="601.613" height="35" transform="translate(9421.387 379)" fill="#fff"/>
+      <rect id="Rectángulo_3328" data-name="Rectángulo 3328" width="601.613" height="35" transform="translate(9421.387 309)" fill="#fff"/>
+      <rect id="Rectángulo_3322" data-name="Rectángulo 3322" width="601.613" height="35" transform="translate(9421.387 64)" fill="#fff"/>
+      <rect id="Rectángulo_3325" data-name="Rectángulo 3325" width="601.613" height="35" transform="translate(9421.387 204)" fill="#fff"/>
+      <rect id="Rectángulo_3331" data-name="Rectángulo 3331" width="601.613" height="35" transform="translate(9421.387 414)" fill="#fff"/>
+      <rect id="Rectángulo_3323" data-name="Rectángulo 3323" width="601.613" height="35" transform="translate(9421.387 99)" fill="#fff"/>
+      <rect id="Rectángulo_3324" data-name="Rectángulo 3324" width="601.613" height="35" transform="translate(9421.387 239)" fill="#fff"/>
+      <rect id="Rectángulo_3330" data-name="Rectángulo 3330" width="601.613" height="35" transform="translate(9421.387 449)" fill="#fff"/>
+      <rect id="Rectángulo_3318" data-name="Rectángulo 3318" width="601.613" height="35" transform="translate(9421.387 -76)" fill="#fff"/>
+      <rect id="Rectángulo_3319" data-name="Rectángulo 3319" width="601.613" height="35" transform="translate(9421.387 -41)" fill="#fff"/>
+    </g>
+    <text id="Elementos_de_registro" data-name="Elementos de registro" transform="translate(9451.387 -263)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Elementos de registro</tspan></text>
+    <text id="Evento" transform="translate(9451.387 -193)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Evento</tspan></text>
+    <text id="Ubicación" transform="translate(9451.387 -123)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Ubicación</tspan></text>
+    <text id="Taxón" transform="translate(9451.387 17)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Taxón</tspan></text>
+    <text id="Extensiones_de_listas_de_especies_" data-name="Extensiones de listas de especies*" transform="translate(9451.387 157)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Extensiones de listas de especies*</tspan></text>
+    <text id="Elementos_GBIF" data-name="Elementos GBIF" transform="translate(9451.387 367)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Elementos GBIF</tspan></text>
+    <text id="Elementos_SiB_Colombia" data-name="Elementos SiB Colombia" transform="translate(9451.387 297)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Bold, Lato" font-weight="700"><tspan x="0" y="0">Elementos SiB Colombia</tspan></text>
+    <text id="occurrenceID" transform="translate(9451 -228)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">occurrenceID</tspan></text>
+    <text id="year" transform="translate(9451 -158)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">year</tspan></text>
+    <text id="country" transform="translate(9451 -88)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">country</tspan></text>
+    <text id="kingdom" transform="translate(9451 52)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">kingdom</tspan></text>
+    <text id="threatStatus_UICN" transform="translate(9451 192)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">threatStatus_UICN</tspan></text>
+    <text id="gbifID" transform="translate(9451 402)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">gbifID</tspan></text>
+    <text id="TipoEntidad" transform="translate(9451 332)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">TipoEntidad</tspan></text>
+    <text id="order" transform="translate(9451 87)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">order</tspan></text>
+    <text id="migratory" transform="translate(9451 227)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">migratory</tspan></text>
+    <text id="datasetKey" transform="translate(9451 437)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">datasetKey</tspan></text>
+    <text id="species" transform="translate(9451 122)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">species</tspan></text>
+    <text id="isInvasive_griis" transform="translate(9451 262)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">isInvasive_griis</tspan></text>
+    <text id="DOI" transform="translate(9451 472)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">DOI</tspan></text>
+    <text id="minucipality" transform="translate(9451 -53)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">minucipality</tspan></text>
+    <text id="decimalLongitude" transform="translate(9451 -18)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">decimalLongitude</tspan></text>
+    <text id="type" transform="translate(9848.482 -228)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">type</tspan></text>
+    <text id="day" transform="translate(9848.482 -158)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">day</tspan></text>
+    <text id="country-2" data-name="country" transform="translate(9848.482 -88)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">country</tspan></text>
+    <text id="class" transform="translate(9848.482 52)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">class</tspan></text>
+    <text id="threatStatus_MADS" transform="translate(9848.482 192)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">threatStatus_MADS</tspan></text>
+    <text id="organization" transform="translate(9848.482 402)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">organization</tspan></text>
+    <text id="genus" transform="translate(9848.482 87)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">genus</tspan></text>
+    <text id="endemic" transform="translate(9848.482 227)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">endemic</tspan></text>
+    <text id="created" transform="translate(9848 437)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">created</tspan></text>
+    <text id="decimalLatitude" transform="translate(9848.482 -53)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">decimalLatitude</tspan></text>
+    <text id="basisOfRecord" transform="translate(9647.217 -228)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">basisOfRecord</tspan></text>
+    <text id="month" transform="translate(9647.217 -158)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">month</tspan></text>
+    <text id="stateProvince" transform="translate(9647.217 -88)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">stateProvince</tspan></text>
+    <text id="phyllum" transform="translate(9647.217 52)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">phyllum</tspan></text>
+    <text id="islnvasive_mads" transform="translate(9647.217 192)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">islnvasive_mads</tspan></text>
+    <text id="publishingOrganizationKey" transform="translate(9647.217 402)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">publishingOrganizationKey</tspan></text>
+    <text id="logoURL" transform="translate(9647.217 332)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">logoURL</tspan></text>
+    <text id="family" transform="translate(9647.217 87)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">family</tspan></text>
+    <text id="exotic" transform="translate(9647.217 227)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">exotic</tspan></text>
+    <text id="datasetTitle" transform="translate(9647.217 437)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">datasetTitle</tspan></text>
+    <text id="taxonRank" transform="translate(9647.217 122)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">taxonRank</tspan></text>
+    <text id="appendixCITES" transform="translate(9647.217 262)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">appendixCITES</tspan></text>
+    <text id="repatriated" transform="translate(9647.217 472)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">repatriated</tspan></text>
+    <text id="publishingCountry" transform="translate(9848 472)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">publishingCountry</tspan></text>
+    <text id="locality" transform="translate(9647.217 -53)" fill="rgba(0,0,0,0.8)" font-size="14" font-family="Lato-Regular, Lato"><tspan x="0" y="0">locality</tspan></text>
+    <path id="Trazado_3264" data-name="Trazado 3264" d="M9622.218-286v33.9" transform="translate(0 35.369)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3274" data-name="Trazado 3274" d="M9622.218-286v33.9" transform="translate(0 595.306)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3266" data-name="Trazado 3266" d="M9622.218-286v33.9" transform="translate(0 105.548)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3268" data-name="Trazado 3268" d="M9622.218-286v69.815" transform="translate(0 175.548)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3270" data-name="Trazado 3270" d="M9622.218-286v103.419" transform="translate(0 315.791)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3272" data-name="Trazado 3272" d="M9622.218-286v103.419" transform="translate(0 455.791)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3275" data-name="Trazado 3275" d="M9622.218-286v103.419" transform="translate(0 665.306)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3265" data-name="Trazado 3265" d="M9622.218-286v33.9" transform="translate(201.83 35.369)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3267" data-name="Trazado 3267" d="M9622.218-286v33.9" transform="translate(201.83 105.548)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3269" data-name="Trazado 3269" d="M9622.218-286v69.815" transform="translate(201.83 175.548)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3271" data-name="Trazado 3271" d="M9622.218-286v69.209" transform="translate(201.83 315.791)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3273" data-name="Trazado 3273" d="M9622.218-286v69.209" transform="translate(201.83 455.791)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+    <path id="Trazado_3276" data-name="Trazado 3276" d="M9622.218-286v69.209" transform="translate(201.83 665.306)" fill="none" stroke="#ccc" stroke-width="0.8"/>
+  </g>
+</svg>

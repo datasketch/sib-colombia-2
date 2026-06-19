@@ -1,0 +1,35 @@
+{
+  "//": "Biodiversidad en Cifras — repo público. Tareas de ejecución, sembrado y construcción. Vea SETUP.md.",
+  "workspace": [
+    "./packages/shared",
+    "./packages/db",
+    "./packages/api",
+    "./packages/web"
+  ],
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "seed": "deno run -A packages/db/mod.ts",
+    "seed:local": "deno run -A packages/db/mod.ts --skip-download --skip-sheets",
+    "api": "deno run -A --watch packages/api/mod.ts",
+    "web": "cd packages/web && deno run -A npm:vite --port 5173",
+    "dev:api": "SIBDATA_DEV=1 deno run -A --watch packages/api/mod.ts",
+    "dev": {
+      "description": "API + Vite en paralelo (http://localhost:5173)",
+      "dependencies": [
+        "dev:api",
+        "web"
+      ]
+    },
+    "build:web": "cd packages/web && deno run -A npm:vite build",
+    "build": {
+      "description": "Construye el frontend (ejecutar antes de 'start')",
+      "dependencies": [
+        "build:web"
+      ]
+    },
+    "start": "deno run -A packages/api/mod.ts",
+    "check": "deno check packages/shared/mod.ts packages/db/mod.ts packages/api/mod.ts",
+    "validate:data": "deno run -A scripts/data-validation.ts",
+    "geo:build": "deno run -A scripts/build-geo.ts"
+  }
+}

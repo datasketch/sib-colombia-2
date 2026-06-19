@@ -1,0 +1,32 @@
+# .gitignore de Biodiversidad en Cifras (repo público sib-colombia-2).
+# El script de entrega copia este archivo como `.gitignore` en la raíz.
+
+# Dependencias y entorno — NO versionar
+node_modules/
+.env
+.env.local
+*.local
+
+# Base de datos generada por la semilla (deno task seed) — se reconstruye,
+# no se versiona.
+*.duckdb
+*.duckdb.wal
+data/
+
+# Salida de compilación del frontend (deno task build) — se reconstruye.
+packages/web/dist/
+.vite/
+
+# Descargas temporales de la semilla / cartografía
+packages/db/data-raw/downloads/
+packages/db/data-raw/db-cifras-sib/
+cartography/downloads/
+tmp/
+
+# OS / editor
+.DS_Store
+*.swp
+
+# NOTA: packages/api/static/geo/*.geojson y packages/web/public/data/ SÍ se
+# versionan a propósito — son los mapas ya generados, para que la app corra
+# sin el paso de cartografía (que es opcional; ver SETUP.md §6).

@@ -1,0 +1,55 @@
+# Stack de un solo servicio para Biodiversidad en Cifras (contenedorización).
+#
+#   docker compose up --build      # construir la imagen + ejecutar
+#   docker compose up -d           # en segundo plano
+#   curl localhost:3001/api/health
+#
+# La BD DuckDB queda HORNEADA EN LA IMAGEN en tiempo de construcción
+# (reconstruir-al-desplegar, igual que el flujo de Deno Deploy). Por eso no
+# hay ningún volumen montado sobre /app/data por defecto — un volumen con
+# nombre ahí taparía la BD sembrada con un directorio vacío en el primer
+# arranque. Vea el bloque comentado "BD externa persistente" más abajo si
+# prefiere una BD fuera de la imagen.
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Corte de datos, configurable al lanzar. Por defecto (vacío) = el
+        # último HEAD publicado en GitLab ("datos de hoy"). Sobrescríbalo
+        # sin editar ningún archivo, p. ej.:
+        #   SEED_ARGS="--gitlab-date=2026-05-31" docker compose up --build
+        # o defina SEED_ARGS en un archivo .env junto a este compose.
+        SEED_ARGS: "${SEED_ARGS:-}"
+    image: biodiversidad-cifras:latest
+    ports:
+      - "3001:3001"
+    environment:
+      SIBDATA_ENV: production
+      PORT: "3001"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - deno
+        - eval
+        - "const r = await fetch(`http://localhost:$${Deno.env.get('PORT') ?? '3001'}/api/health`); Deno.exit(r.ok ? 0 : 1);"
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+# --- BD externa persistente (alternativa opcional a la BD horneada) --------
+# Para servir desde una DuckDB que viva en un volumen con nombre en lugar de
+# la imagen, apunte SIBDATA_DB_PATH al volumen y siémbrelo una vez en una
+# ruta que NO colisione con la /app/data de la imagen. Ejemplo:
+#
+#     environment:
+#       SIBDATA_DB_PATH: /var/lib/sibdata/sibdata.duckdb
+#     volumes:
+#       - sibdata-db:/var/lib/sibdata
+#
+# volumes:
+#   sibdata-db:

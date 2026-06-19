@@ -1,0 +1,42 @@
+{
+  "name": "@sibdata/web",
+  "version": "0.1.0",
+  "exports": "./src/main.tsx",
+  "tasks": {
+    "dev": "deno run -A npm:vite",
+    "build": "deno run -A npm:vite build",
+    "preview": "deno run -A npm:vite preview"
+  },
+  "imports": {
+    "react": "npm:react@^18.3.1",
+    "react-dom": "npm:react-dom@^18.3.1",
+    "react-dom/client": "npm:react-dom@^18.3.1/client",
+    "react/jsx-runtime": "npm:react@^18.3.1/jsx-runtime",
+    "react-router-dom": "npm:react-router-dom@^6.26.0",
+    "@tanstack/react-query": "npm:@tanstack/react-query@^5",
+    "leaflet": "npm:leaflet@^1.9.4",
+    "react-leaflet": "npm:react-leaflet@^4.2.1",
+    "recharts": "npm:recharts@^2",
+    "react-simple-maps": "npm:react-simple-maps@^3.0.0",
+    "react-slick": "npm:react-slick@^0.30.2",
+    "slick-carousel": "npm:slick-carousel@^1.8.1",
+    "react-markdown": "npm:react-markdown@^9",
+    "remark-gfm": "npm:remark-gfm@^4",
+    "rehype-raw": "npm:rehype-raw@^7",
+    "@szhsin/react-menu": "npm:@szhsin/react-menu@^4",
+    "@mui/material": "npm:@mui/material@^5",
+    "@emotion/react": "npm:@emotion/react@^11",
+    "@emotion/styled": "npm:@emotion/styled@^11",
+    "classnames": "npm:classnames@^2",
+    "prop-types": "npm:prop-types@^15",
+    "d3-scale": "npm:d3-scale@^4",
+    "d3-geo": "npm:d3-geo@^3",
+    "d3-color-legend": "npm:d3-color-legend@^1",
+    "d3": "npm:d3@^7"
+  },
+  "compilerOptions": {
+    "lib": ["deno.window", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

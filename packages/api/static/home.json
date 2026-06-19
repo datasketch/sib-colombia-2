@@ -1,0 +1,281 @@
+{
+  "lista_mapa": {
+    "country_ranking": [
+      {
+        "puesto": 1,
+        "pais": "Brasil",
+        "..gt_id": "BRA",
+        "..gt_name": "Brazil",
+        "..gt_map_name": "world_countries",
+        "lat": -10.6379,
+        "lon": -53.2167
+      },
+      {
+        "puesto": 2,
+        "pais": "Indonesia",
+        "..gt_id": "IDN",
+        "..gt_name": "Indonesia",
+        "..gt_map_name": "world_countries",
+        "lat": -2.2597,
+        "lon": 117.1665
+      },
+      {
+        "puesto": 3,
+        "pais": "China",
+        "..gt_id": "CHN",
+        "..gt_name": "China",
+        "..gt_map_name": "world_countries",
+        "lat": 36.6913,
+        "lon": 103.3773
+      },
+      {
+        "puesto": 4,
+        "pais": "Colombia",
+        "..gt_id": "COL",
+        "..gt_name": "Colombia",
+        "..gt_map_name": "world_countries",
+        "lat": 3.903,
+        "lon": -73.0757
+      },
+      {
+        "puesto": 5,
+        "pais": "Perú",
+        "..gt_id": "PER",
+        "..gt_name": "Peru",
+        "..gt_map_name": "world_countries",
+        "lat": -9.1077,
+        "lon": -74.4202
+      },
+      {
+        "puesto": 6,
+        "pais": "México",
+        "..gt_id": "MEX",
+        "..gt_name": "Mexico",
+        "..gt_map_name": "world_countries",
+        "lat": 23.9267,
+        "lon": -102.1717
+      },
+      {
+        "puesto": 7,
+        "pais": "Australia",
+        "..gt_id": "AUS",
+        "..gt_name": "Australia",
+        "..gt_map_name": "world_countries",
+        "lat": -25.7654,
+        "lon": 134.301
+      },
+      {
+        "puesto": 7,
+        "pais": "Australia",
+        "..gt_id": "AUS",
+        "..gt_name": "Australia",
+        "..gt_map_name": "world_countries",
+        "lat": -10.5017,
+        "lon": 105.6702
+      },
+      {
+        "puesto": 7,
+        "pais": "Australia",
+        "..gt_id": "AUS",
+        "..gt_name": "Indian Ocean Ter.",
+        "..gt_map_name": "world_countries",
+        "lat": -25.7654,
+        "lon": 134.301
+      },
+      {
+        "puesto": 7,
+        "pais": "Australia",
+        "..gt_id": "AUS",
+        "..gt_name": "Indian Ocean Ter.",
+        "..gt_map_name": "world_countries",
+        "lat": -10.5017,
+        "lon": 105.6702
+      },
+      {
+        "puesto": 8,
+        "pais": "India",
+        "..gt_id": "IND",
+        "..gt_name": "India",
+        "..gt_map_name": "world_countries",
+        "lat": 22.781,
+        "lon": 79.5576
+      },
+      {
+        "puesto": 9,
+        "pais": "Ecuador",
+        "..gt_id": "ECU",
+        "..gt_name": "Ecuador",
+        "..gt_map_name": "world_countries",
+        "lat": -1.423,
+        "lon": -78.7328
+      },
+      {
+        "puesto": 10,
+        "pais": "Estados Unidos",
+        "..gt_id": "USA",
+        "..gt_name": "United States",
+        "..gt_map_name": "world_countries",
+        "lat": 44.733,
+        "lon": -103.5989
+      }
+    ],
+    "ref_principal": "Butler, R. A. (2025). Biodiversity Rank by Country (updated List 2025). Worldostats, Mongabay. Recuperado de https://worldostats.com/country-stats/biodiversity-rank-by-country/",
+    "positions": [
+      {
+        "position": 1,
+        "suffix": "er",
+        "position_text": "Primer lugar en diversidad de aves (111 | 112), orquídeas (41) y mariposas (13)"
+      },
+      {
+        "position": 2,
+        "suffix": "do",
+        "position_text": "Segundo en variedad de anfibios (113 | 97), peces dulceacuícolas (114), palmas (54 | 96) y murciélagos (53 | 103)"
+      },
+      {
+        "position": 3,
+        "suffix": "er",
+        "position_text": "Tercero en diversidad de plantas (115 | 96)"
+      },
+      {
+        "position": 6,
+        "suffix": "to",
+        "position_text": "Sexto en mamíferos (116 | 99)"
+      },
+      {
+        "position": 7,
+        "suffix": "mo",
+        "position_text": "Séptimo en reptiles (6 | 98)"
+      }
+    ],
+    "position_refs": [
+      {
+        "ref_id": 6,
+        "label": "Uetz, P., Freed, P., Aguilar, R., Reyes, F., Kudera, J., & Hošek, J. (Eds.). (2025). The Reptile Database. Recuperado de http://www.reptile-database.org, accessed 2025-08-19"
+      },
+      {
+        "ref_id": 13,
+        "label": "Garwood K., Huertas B., Ríos-Málaver I.C., Jaramillo J.G. (2022). Mariposas de Colombia Lista de chequeo/ Butterflies of Colombia Checklist (Lepidoptera: Papilionoidea). BioButterfly Database. 2da Edición. 304 pp. Disponible en / Available at http://www.butterflycatalogs.com"
+      },
+      {
+        "ref_id": 41,
+        "label": "Hassler, Michael (1994 - 2025): World Orchids. Synonymic Checklist and Distribution of the Orchids of the World. Version 25.08, last update August 18th, 2025. - (www.worldplants.de/orchids/)"
+      },
+      {
+        "ref_id": 53,
+        "label": "Martínez-Medina, Daniela, Acevedo-Charry, Orlando, Medellín-Becerra, Sofía, Rodríguez-Fuentes, Juliana, López-Casas, Silvia, Muñoz-Duque, Sebastián, Rivera-Correa, Mauricio, López-Aguirre, Yelenny, Vargas-Salinas, Fernando, Laverde-R., Oscar, & Rodríguez-Posada, Miguel E. (2021). Estado, desarrollo y tendencias de los estudios en acústica de la fauna en Colombia. Biota colombiana, 22(1), 7-25. https://doi.org/10.21068/c2021.v22n01a01"
+      },
+      {
+        "ref_id": 54,
+        "label": "Ministerio de Ambiente y Desarrollo Sostenible. (2015). Plan de conservación, manejo y uso sostenible de las palmas deColombia. Textos: Galeano G., R. Bernal, Y. Figueroa Cardozo. Ministerio de Ambiente y Desarrollo Sostenible - Universidad Nacional deColombia, Bogotá. 134 pp. Recuperado de https://www.minambiente.gov.co/documento-entidad/plan-de-conservacion-manejo-y-uso-sostenible-de-las-palmas-de-colombia-2015"
+      },
+      {
+        "ref_id": 96,
+        "label": "Butler, R. A. (2023). Total number of plant species by country. World Rainforests, Mongabay. Recuperado de https://worldrainforests.com/03plants.htm"
+      },
+      {
+        "ref_id": 97,
+        "label": "Butler, R. A. (2023). Total number of amphibian species, by country. World Rainforests, Mongabay. Recuperado de https://rainforests.mongabay.com/03amphibian.htm"
+      },
+      {
+        "ref_id": 98,
+        "label": "Butler, R. A. (2023). Total number of reptile species by country. World Rainforests, Mongabay. Recuperado de https://worldrainforests.com/03reptiles.htm"
+      },
+      {
+        "ref_id": 99,
+        "label": "Butler, R. A. (2023). Total number of mammal species by country. World Rainforests, Mongabay. Recuperado de https://worldrainforests.com/03mammals.htm"
+      },
+      {
+        "ref_id": 103,
+        "label": "Bat Population by Country 2024. (n.d.). Retrieved January 23, 2024, from https://worldpopulationreview.com/country-rankings/bat-population-by-country"
+      },
+      {
+        "ref_id": 111,
+        "label": "BirdLife International. (2025). BirdLife DataZone – Búsqueda de especies y perfiles por país. Recuperado de https://datazone.birdlife.org/search"
+      },
+      {
+        "ref_id": 112,
+        "label": "Butler, R. A. (2023). Total number of bird species, by country. World Rainforests, Mongabay. Recuperado de https://worldrainforests.com/03birds.htm"
+      },
+      {
+        "ref_id": 113,
+        "label": "AmphibiaWeb. (2025). Species by Country. University of California, Berkeley. Recuperado de https://amphibiaweb.org"
+      },
+      {
+        "ref_id": 114,
+        "label": "DoNascimiento, C., Agudelo-Zamora, H. D., Bogotá-Gregory, J. D., Méndez-López, A., Ortega-Lara, A., Lasso, C. A., Cortés-Hernández, M., Albornoz-Garzón, J. G., Villa-Navarro, F. A., Netto-Ferreira, A. L., Lima, F. C. T., Thomaz, A., Arce-Hernández, M. (2023): Lista de especies de peces de agua dulce de Colombia / Checklist of the freshwater fishes of Colombia. v2.16. Asociación Colombiana de Ictiólogos. Dataset/Checklist. https://doi.org/10.15472/numrso"
+      },
+      {
+        "ref_id": 115,
+        "label": "UNEP (2022). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC, Cambridge, UK. Available at: www.speciesplus.net. DOI: https://doi.org/10.34892/7n0w-4g32"
+      },
+      {
+        "ref_id": 116,
+        "label": "Mammal Diversity Database. (2025). Country Mammal Diversity. American Society of Mammalogists. Recuperado de https://www.mammaldiversity.org/country/"
+      }
+    ]
+  },
+  "destacados_regiones": [
+    {
+      "slug_region": "amazonas",
+      "label_region": "Amazonas",
+      "observadas": 474386,
+      "especies_estimadas": 56574,
+      "especies_total": 11516
+    },
+    {
+      "slug_region": "caqueta",
+      "label_region": "Caquetá",
+      "observadas": 435435,
+      "especies_estimadas": 53596,
+      "especies_total": 11144
+    },
+    {
+      "slug_region": "cauca",
+      "label_region": "Cauca",
+      "observadas": 614175,
+      "especies_estimadas": 49980,
+      "especies_total": 12173
+    },
+    {
+      "slug_region": "guainia",
+      "label_region": "Guainía",
+      "observadas": 262293,
+      "especies_estimadas": 50324,
+      "especies_total": 4343
+    },
+    {
+      "slug_region": "guaviare",
+      "label_region": "Guaviare",
+      "observadas": 179350,
+      "especies_estimadas": 51685,
+      "especies_total": 4759
+    },
+    {
+      "slug_region": "meta",
+      "label_region": "Meta",
+      "observadas": 1890657,
+      "especies_estimadas": 48014,
+      "especies_total": 17022
+    },
+    {
+      "slug_region": "putumayo",
+      "label_region": "Putumayo",
+      "observadas": 518333,
+      "especies_estimadas": 54128,
+      "especies_total": 9094
+    },
+    {
+      "slug_region": "vaupes",
+      "label_region": "Vaupés",
+      "observadas": 262907,
+      "especies_estimadas": 54367,
+      "especies_total": 6528
+    },
+    {
+      "slug_region": "region-amazonia",
+      "label_region": "Región Amazonía",
+      "observadas": 1720528,
+      "especies_total": 16991
+    }
+  ]
+}
