@@ -8,10 +8,12 @@ node_modules/
 *.local
 
 # Base de datos generada por la semilla (deno task seed) — se reconstruye,
-# no se versiona.
+# no se versiona. OJO: `/data/` va anclado a la raíz a propósito; un `data/`
+# sin barra inicial también ignoraría packages/web/src/data y
+# packages/web/public/data (que SÍ deben versionarse).
 *.duckdb
 *.duckdb.wal
-data/
+/data/
 
 # Salida de compilación del frontend (deno task build) — se reconstruye.
 packages/web/dist/

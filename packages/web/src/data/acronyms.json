@@ -1,0 +1,171 @@
+{
+  "_meta": {
+    "proposito": "Siglas y acrónimos usados en la plataforma y su significado, para mostrarlos con la etiqueta <abbr> (issue #32).",
+    "generado": "2026-06-04 — extraído de las siglas presentes en el contenido de la plataforma (tooltips, fichas, tarjetas de datos).",
+    "validado": "2026-06-04 — descripciones aprobadas por el cliente (Instituto Humboldt / SiB Colombia).",
+    "como_revisar": "Revisar cada campo 'significado'. Los registros con \"revisar\": true son los que conviene confirmar contra la fuente oficial (nombre exacto de la institución, etc.). Los de \"revisar\": false ya usan la redacción vigente en la plataforma o son estándar internacional.",
+    "categorias": {
+      "convenio": "Convenios y sistemas de clasificación internacionales",
+      "categoria_amenaza": "Categorías de la Lista Roja de la UICN",
+      "institucion": "Instituciones y sistemas de información",
+      "figura_territorial": "Figuras y áreas de manejo territorial"
+    },
+    "notas": [
+      "Las categorías de amenaza (CR, EN, VU, …) usan la redacción que ya está en data/tooltips.json.",
+      "'UICN' (español) e 'IUCN' (inglés) refieren a la misma organización; ambas formas aparecen en el contenido.",
+      "Las siglas de 2 letras (CR/EN/VU/EX/…) son ambiguas en texto corrido; solo deben envolverse con <abbr> en etiquetas/datos estructurados, no en prosa libre."
+    ]
+  },
+
+  "siglas": [
+    {
+      "sigla": "CITES",
+      "significado": "Convención sobre el Comercio Internacional de Especies Amenazadas de Fauna y Flora Silvestres",
+      "categoria": "convenio",
+      "fuente": "https://cites.org/esp",
+      "revisar": false
+    },
+    {
+      "sigla": "UICN",
+      "significado": "Unión Internacional para la Conservación de la Naturaleza",
+      "categoria": "convenio",
+      "aliases": ["IUCN"],
+      "nota": "IUCN es la sigla en inglés de la misma organización.",
+      "fuente": "https://www.iucn.org/es",
+      "revisar": false
+    },
+
+    {
+      "sigla": "EX",
+      "significado": "Extinto",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "EW",
+      "significado": "Extinto en estado silvestre",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "CR",
+      "significado": "En peligro crítico",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "EN",
+      "significado": "En peligro",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "VU",
+      "significado": "Vulnerable",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "NT",
+      "significado": "Casi amenazado",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "LC",
+      "significado": "Preocupación menor",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "DD",
+      "significado": "Datos insuficientes",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "NE",
+      "significado": "No evaluado",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "LR/cd",
+      "significado": "Menor riesgo / Dependiente de medidas de conservación",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "LR/nt",
+      "significado": "Menor riesgo / Casi amenazado",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+    {
+      "sigla": "LR/lc",
+      "significado": "Menor riesgo / Preocupación menor",
+      "categoria": "categoria_amenaza",
+      "revisar": false
+    },
+
+    {
+      "sigla": "SiB",
+      "significado": "Sistema de Información sobre Biodiversidad de Colombia",
+      "categoria": "institucion",
+      "aliases": ["SiB Colombia"],
+      "fuente": "https://biodiversidad.co",
+      "revisar": false
+    },
+    {
+      "sigla": "Humboldt",
+      "significado": "Instituto de Investigación de Recursos Biológicos Alexander von Humboldt",
+      "categoria": "institucion",
+      "fuente": "http://www.humboldt.org.co",
+      "revisar": false
+    },
+    {
+      "sigla": "Invemar",
+      "significado": "Instituto de Investigaciones Marinas y Costeras José Benito Vives de Andréis",
+      "categoria": "institucion",
+      "aliases": ["INVEMAR"],
+      "nota": "Confirmar si se incluye el nombre completo 'José Benito Vives de Andréis'.",
+      "fuente": "https://www.invemar.org.co",
+      "revisar": false
+    },
+    {
+      "sigla": "GBIF",
+      "significado": "Infraestructura Mundial de Información en Biodiversidad",
+      "categoria": "institucion",
+      "nota": "Sigla del inglés 'Global Biodiversity Information Facility'. Confirmar la forma en español preferida por el cliente.",
+      "fuente": "https://www.gbif.org",
+      "revisar": false
+    },
+    {
+      "sigla": "MADS",
+      "significado": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "categoria": "institucion",
+      "revisar": false
+    },
+
+    {
+      "sigla": "NDFyB",
+      "significado": "Núcleo de Desarrollo Forestal y de la Biodiversidad",
+      "categoria": "figura_territorial",
+      "nota": "Singular. La ventana agregada usa el plural 'Núcleos de Desarrollo Forestal y de la Biodiversidad'.",
+      "revisar": false
+    },
+    {
+      "sigla": "PNN",
+      "significado": "Parques Nacionales Naturales de Colombia",
+      "categoria": "figura_territorial",
+      "nota": "También puede referirse a un 'Parque Nacional Natural' individual según el contexto.",
+      "revisar": false
+    },
+    {
+      "sigla": "SINAP",
+      "significado": "Sistema Nacional de Áreas Protegidas",
+      "categoria": "figura_territorial",
+      "revisar": false
+    }
+  ]
+}
