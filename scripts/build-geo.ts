@@ -6,13 +6,14 @@
  * artifacts the app consumes:
  *   - slug-keyed, PURE-geometry GeoJSON (packages/api/static/geo/) —
  *     counts join live from DuckDB at request time, never baked in.
- *   - per-region SVG silhouettes (packages/web/public/data/<slug>/) —
- *     replacing the legacy R svglite prints.
+ *   - coarse locator GeoJSON (packages/api/static/geo/loc/<slug>) — the API
+ *     renders locator maps and banner silhouettes on demand from it; the
+ *     legacy R svglite prints (and the static web SVGs) are gone.
  *
  * Every shapefile is self-describing: each feature carries slug, label,
  * parent and a DANE code (cod_dane on municipios, dpto_ccdgo on
- * departments). Identity therefore comes from the shapefile, geometry is
- * simplified with mapshaper, and silhouettes are rendered with d3-geo.
+ * departments). Identity therefore comes from the shapefile and geometry is
+ * simplified with mapshaper.
  *
  * Tooling: Deno + npm. See cartography/docs/PIPELINE.md.
  */
@@ -20,16 +21,11 @@ import * as shapefile from "npm:shapefile@0.6.6";
 import mapshaper from "npm:mapshaper@0.6.102";
 import type { Feature, FeatureCollection, Geometry, Position } from "npm:@types/geojson@7946.0.14";
 import { dirname, fromFileUrl, join } from "https://deno.land/std@0.224.0/path/mod.ts";
-import { renderSvg } from "../packages/api/services/geo-svg.ts";
 
 const ROOT = join(dirname(fromFileUrl(import.meta.url)), "..");
 const DOWNLOADS = join(ROOT, "cartography", "downloads", "Cartografia_biocifras");
 const SEED = join(ROOT, "packages", "db", "data-raw", "db-cifras-sib");
 const GEO_OUT = join(ROOT, "packages", "api", "static", "geo");
-const SVG_OUT = join(ROOT, "packages", "web", "public", "data");
-const SVG_SIZE = 144; // match the legacy svglite viewBox (144x144pt)
-const SVG_FILL = "#B3CFC0"; // light sage — visible silhouette on the dark banner (legacy color)
-const SVG_STROKE = "#007139"; // green outline (legacy svglite dept stroke)
 const SIMPLIFY_PCT = 12; // Visvalingam retention for the choropleth GeoJSON
 const SILHOUETTE_PCT = 8; // far coarser — the silhouette only renders at 144px
 
@@ -137,56 +133,47 @@ async function writeGeojson(slug: string, features: Feature[]) {
 }
 
 /**
- * Render a region as an SVG silhouette (filled outline). The silhouette
- * only renders at 144px, so simplify it far harder than the interactive
- * choropleth GeoJSON. Winding/projection live in the shared renderSvg.
+ * Persist the coarse, heavily-simplified locator geometry for a region. The
+ * runtime locator + silhouette endpoints (packages/api/services/locator.ts)
+ * recolour individual features, so they need geometry (not a flat SVG) — the
+ * silhouette SVG that used to live in packages/web/public/data is now rendered
+ * on demand. Simplify far harder than the interactive choropleth GeoJSON.
  */
-async function writeSilhouette(slug: string, geo: Feature | FeatureCollection) {
+async function writeLocGeometry(slug: string, geo: Feature | FeatureCollection) {
   const fc: FeatureCollection = geo.type === "FeatureCollection"
     ? geo
     : { type: "FeatureCollection", features: [geo] };
   const small = await simplify(fc, SILHOUETTE_PCT);
-  // Persist the coarse geometry for the runtime locator endpoint, which
-  // recolours individual features and so needs geometry (not a flat SVG).
   await Deno.mkdir(join(GEO_OUT, "loc"), { recursive: true });
   await Deno.writeTextFile(join(GEO_OUT, "loc", `${slug}.geojson`), JSON.stringify(small));
-  const svg = renderSvg({
-    frame: small.features,
-    layers: [{ features: small.features, fill: SVG_FILL, stroke: SVG_STROKE, strokeWidth: 0.5 }],
-    size: SVG_SIZE,
-    digits: 2,
-  });
-  const dir = join(SVG_OUT, slug);
-  await Deno.mkdir(dir, { recursive: true });
-  await Deno.writeTextFile(join(dir, `${slug}.svg`), svg);
 }
 
 // ── Layer builders ──────────────────────────────────────────────────────
 
-/** colombia.geojson (33 depts) + bogota-dc geojson + silhouette (no munis file). */
+/** colombia.geojson (33 depts) + bogota-dc geojson + loc geometry (no munis file). */
 async function buildColombiaAndDepartments() {
   console.log("\n# Departamentos → colombia + bogota-dc");
   const features = await clean(await readLayer("Departamentos", "colombia"));
   await writeGeojson("colombia", features);
   // Coarse colombia geometry for the locator endpoint (dept/núcleo/reserva
-  // highlighted inside the country). Also emits an unused colombia.svg.
-  await writeSilhouette("colombia", { type: "FeatureCollection", features });
-  // Bogotá D.C. has no Municipios shapefile, so its silhouette is the
+  // highlighted inside the country).
+  await writeLocGeometry("colombia", { type: "FeatureCollection", features });
+  // Bogotá D.C. has no Municipios shapefile, so its loc geometry is the
   // single department feature (matching the R script's bogota special case).
   const bogota = features.find((f) => (f.properties as GeoProps).slug === "bogota-dc");
   if (bogota) {
     await writeGeojson("bogota-dc", [bogota]);
-    await writeSilhouette("bogota-dc", bogota);
+    await writeLocGeometry("bogota-dc", bogota);
   }
 }
 
 /**
  * One <dept>.geojson (its municipios) per Municipios/<dept>.shp + the dept
- * silhouette rendered from those municipios — the subdivided map the banner
- * shows (matching scripts/02_departamentos_pais.R's col_municipalities icon).
+ * loc geometry from those municipios — the subdivided map the banner
+ * silhouette shows (matching scripts/02_departamentos_pais.R's col_municipalities icon).
  */
 async function buildMunicipios() {
-  console.log("\n# Municipios → per-department geojson + silhouette");
+  console.log("\n# Municipios → per-department geojson + loc geometry");
   for await (const entry of Deno.readDir(join(DOWNLOADS, "Municipios"))) {
     if (!entry.name.endsWith(".shp")) continue;
     const base = entry.name.slice(0, -4);
@@ -195,21 +182,21 @@ async function buildMunicipios() {
     const deptSlug = CODE_TO_SLUG.get(code) ?? base;
     const features = await clean(raw);
     await writeGeojson(deptSlug, features);
-    await writeSilhouette(deptSlug, { type: "FeatureCollection", features });
+    await writeLocGeometry(deptSlug, { type: "FeatureCollection", features });
   }
 }
 
-/** region-amazonia.geojson (8 constituent departments) + silhouette. */
+/** region-amazonia.geojson (8 constituent departments) + loc geometry. */
 async function buildAmazonia() {
   console.log("\n# Region Amazonia → region-amazonia");
   const features = await clean(await readLayer("Region Amazonia", "region-amazonia-departamentos"));
   await writeGeojson("region-amazonia", features);
-  await writeSilhouette("region-amazonia", { type: "FeatureCollection", features });
+  await writeLocGeometry("region-amazonia", { type: "FeatureCollection", features });
 }
 
 /** Single-feature special regions: reserva, resguardo. */
 async function buildSpecialRegions() {
-  console.log("\n# Reserva / Resguardo → single-feature geojson + silhouette");
+  console.log("\n# Reserva / Resguardo → single-feature geojson + loc geometry");
   const layers: [string, string][] = [
     ["Reserva", "reservas-forestales-protectoras"],
     ["Resguardo", "territorios-indigenas"],
@@ -219,23 +206,23 @@ async function buildSpecialRegions() {
     for (const feat of features) {
       const slug = (feat.properties as GeoProps).slug;
       await writeGeojson(slug, [feat]);
-      await writeSilhouette(slug, feat);
+      await writeLocGeometry(slug, feat);
     }
   }
 }
 
-/** NDFyB: combined nucleos-dfyb.geojson + one geojson + silhouette per núcleo. */
+/** NDFyB: combined nucleos-dfyb.geojson + one geojson + loc geometry per núcleo. */
 async function buildNucleos() {
   console.log("\n# NDFyB → núcleos");
   const features = await clean(await readLayer("NDFyB", "nucleos-dfyb"));
   await writeGeojson("nucleos-dfyb", features);
-  // Aggregate silhouette + loc/ geometry so /api/locator/nucleos-dfyb.svg
+  // Aggregate loc/ geometry so /api/locator/nucleos-dfyb.svg
   // renders the country map with all 22 núcleos highlighted.
-  await writeSilhouette("nucleos-dfyb", { type: "FeatureCollection", features });
+  await writeLocGeometry("nucleos-dfyb", { type: "FeatureCollection", features });
   for (const feat of features) {
     const slug = (feat.properties as GeoProps).slug;
     await writeGeojson(slug, [feat]);
-    await writeSilhouette(slug, feat);
+    await writeLocGeometry(slug, feat);
   }
 }
 

@@ -173,7 +173,7 @@ export function Region() {
         imageMap={
           regionSlug === "colombia"
             ? "images/colombia.svg"
-            : `data/${regionSlug}/${regionSlug}.svg`
+            : `api/locator/${regionSlug}/silhouette.svg`
         }
         referencia={generalInfo?.referencia}
         photoLabel={generalInfo?.credito_foto}

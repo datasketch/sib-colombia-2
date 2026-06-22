@@ -18,6 +18,10 @@ const HIGHLIGHT: Pick<SvgLayer, "fill" | "stroke" | "strokeWidth"> = {
 };
 
 const cache = new Map<string, string>();
+const silhouetteCache = new Map<string, string>();
+
+// Matches scripts/build-geo.ts:153-157 (SVG_FILL/SVG_STROKE/SVG_SIZE).
+const SILHOUETTE = { fill: "#B3CFC0", stroke: "#007139", strokeWidth: 0.5 };
 
 async function loadGeo(slug: string): Promise<Feature[]> {
   try {
@@ -80,5 +84,16 @@ export async function renderLocator(slug: string): Promise<string | null> {
   }
 
   if (svg) cache.set(slug, svg); // don't cache misses — geometry may appear later
+  return svg;
+}
+
+/** Standalone region silhouette (no context frame) — replaces the static
+ *  packages/web/public/data/<slug>/<slug>.svg. null if no geometry. */
+export async function renderSilhouette(slug: string): Promise<string | null> {
+  if (silhouetteCache.has(slug)) return silhouetteCache.get(slug)!;
+  const features = await loadGeo(slug); // reads static/geo/loc/<slug>.geojson
+  if (!features.length) return null;
+  const svg = renderSvg({ frame: features, layers: [{ features, ...SILHOUETTE }], size: 144, digits: 2 });
+  silhouetteCache.set(slug, svg);
   return svg;
 }

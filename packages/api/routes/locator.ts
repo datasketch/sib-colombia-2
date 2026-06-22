@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { renderLocator } from "../services/locator.ts";
+import { renderLocator, renderSilhouette } from "../services/locator.ts";
 
 const app = new Hono();
 
@@ -14,6 +14,20 @@ app.get("/:slug", async (c) => {
   if (!svg) {
     return c.json({ error: `No locator for "${slug}"`, hint: "unknown region slug" }, 404);
   }
+  return c.body(svg, 200, {
+    "Content-Type": "image/svg+xml; charset=utf-8",
+    "Cache-Control": "public, max-age=300",
+  });
+});
+
+/**
+ * GET /api/locator/:slug/silhouette.svg — standalone region silhouette
+ * (no context frame) for the banner. Replaces the static
+ * packages/web/public/data/<slug>/<slug>.svg.
+ */
+app.get("/:slug/silhouette.svg", async (c) => {
+  const svg = await renderSilhouette(c.req.param("slug"));
+  if (!svg) return c.json({ error: `No silhouette for "${c.req.param("slug")}"` }, 404);
   return c.body(svg, 200, {
     "Content-Type": "image/svg+xml; charset=utf-8",
     "Cache-Control": "public, max-age=300",

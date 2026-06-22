@@ -66,7 +66,7 @@ export function Municipality() {
         especiesEstimadas={generalInfo.especies_region_estimadas}
         especiesObservadas={generalInfo.especies_region_total}
         marine={generalInfo.marino}
-        imageMap={`data/${slug}/${slug}.svg`}
+        imageMap={`api/locator/${slug}/silhouette.svg`}
         imageSmallDpto={`images/mapas-svg-dep/mapa-${slug}.svg`}
         referencia={generalInfo.referencia}
         photoLabel={generalInfo.credito_foto}

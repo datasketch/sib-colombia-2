@@ -10,92 +10,11 @@ import { getRegionPublishers, getRegionSponsors } from "../services/publishers.t
 import { getMapData } from "../services/map-data.ts";
 import { getSlugDrift } from "../services/shape-drift.ts";
 import { isProduction } from "../env.ts";
+import { buildGrupoNav, buildTematicaNav } from "../services/navigation.ts";
 
 const __dirname = dirname(fromFileUrl(import.meta.url));
+// Only used by the dev-only ?static=1 branch below (disabled in production).
 const STATIC_REGIONS_DIR = join(__dirname, "..", "static");
-
-// Pre-load colombia.json once at startup to reuse its nav trees for all regions.
-// The navigation hierarchy is the same across regions (it's the menu structure,
-// not region-specific data).
-let cachedNavsRaw: {
-  nav_tematica: unknown;
-  nav_grupo_biologico: unknown;
-  nav_grupo_interes: unknown;
-  nav_territorio: unknown;
-} | null = null;
-let cachedNavsNormalized: {
-  nav_tematica: unknown;
-  nav_grupo_biologico: unknown;
-  nav_grupo_interes: unknown;
-  nav_territorio: unknown;
-} | null = null;
-
-/**
- * Walk a tree node and normalize 0/1 to boolean for icon/marino fields.
- * The static colombia.json has them as ints; boyaca.json has them as bools.
- * Components do truthy checks so both work, but we normalize for consistency
- * when serving non-colombia regions (so they match the boyaca-style contract).
- */
-// deno-lint-ignore no-explicit-any
-function normalizeNavTree(node: any): any {
-  if (!node || typeof node !== "object") return node;
-  if (Array.isArray(node)) return node.map(normalizeNavTree);
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(node)) {
-    if ((k === "icon" || k === "marino") && typeof v === "number") {
-      out[k] = v === 1;
-    } else if (k === "children" && Array.isArray(v)) {
-      out[k] = v.map(normalizeNavTree);
-    } else {
-      out[k] = v;
-    }
-  }
-  return out;
-}
-
-async function loadColombiaNavs() {
-  if (cachedNavsRaw) return;
-  try {
-    const colombiaPath = join(STATIC_REGIONS_DIR, "colombia.json");
-    const content = await Deno.readTextFile(colombiaPath);
-    const parsed = JSON.parse(content);
-    cachedNavsRaw = {
-      nav_tematica: parsed.nav_tematica ?? { slug: "tematica", children: [] },
-      nav_grupo_biologico: parsed.nav_grupo_biologico ?? { slug: "grupo_biologico", children: [] },
-      nav_grupo_interes: parsed.nav_grupo_interes ?? { slug: "grupo_interes", children: [] },
-      nav_territorio: parsed.nav_territorio ?? { slug: "territorio", children: [] },
-    };
-    cachedNavsNormalized = {
-      nav_tematica: normalizeNavTree(cachedNavsRaw.nav_tematica),
-      nav_grupo_biologico: normalizeNavTree(cachedNavsRaw.nav_grupo_biologico),
-      nav_grupo_interes: normalizeNavTree(cachedNavsRaw.nav_grupo_interes),
-      nav_territorio: normalizeNavTree(cachedNavsRaw.nav_territorio),
-    };
-  } catch {
-    const empty = {
-      nav_tematica: { slug: "tematica", children: [] },
-      nav_grupo_biologico: { slug: "grupo_biologico", children: [] },
-      nav_grupo_interes: { slug: "grupo_interes", children: [] },
-      nav_territorio: { slug: "territorio", children: [] },
-    };
-    cachedNavsRaw = empty;
-    cachedNavsNormalized = empty;
-  }
-}
-
-async function getNavs(slug: string) {
-  await loadColombiaNavs();
-  // For colombia itself, use the raw (unnormalized) version
-  // since colombia.json IS the source. For other regions, use the
-  // normalized version so types match boyaca-style contract.
-  const navs = slug === "colombia" ? cachedNavsRaw! : cachedNavsNormalized!;
-  return {
-    nav_tematica: navs.nav_tematica,
-    nav_grupo_biologico: navs.nav_grupo_biologico,
-    nav_grupo_interes: navs.nav_grupo_interes,
-    nav_territorio: navs.nav_territorio,
-  };
-}
 
 const regionDetail = new Hono();
 
@@ -221,36 +140,40 @@ regionDetail.get("/:slug", async (c) => {
           { slug: "tolima", label: "Tolima" },
         ];
 
-    const navs = await getNavs(slug);
-    // nav_territorio is region-specific:
-    // - colombia: use the raw colombia.json nav_territorio (departments)
-    // - municipalities: empty array
-    // - other depts: 1 child = the region with all munis as grandchildren
+    // Menu trees from DuckDB — the same source as /api/navigation/:type. These
+    // replace the nav trees that used to be copied out of static/colombia.json,
+    // so a region's response no longer depends on any static snapshot.
+    const [navTematica, navGrupoBiologico, navGrupoInteres] = await Promise.all([
+      buildTematicaNav(),
+      buildGrupoNav("biologico"),
+      buildGrupoNav("interes"),
+    ]);
+
+    // nav_territorio is region-specific: root → region → subregions.
+    // - municipalities: empty array (no children)
+    // - colombia: its 33 departments as subregions
+    // - bogota-dc: single-municipality dept — no children array on the leaf
+    // - other depts: all municipios as subregions
+    let navTerritorio: unknown;
     if (isMunicipality) {
-      navs.nav_territorio = [];
-    } else if (slug !== "colombia") {
+      navTerritorio = [];
+    } else {
       const regionRow = await queryRows(
         `SELECT slug, label FROM region WHERE slug = $1`,
         [slug],
       );
       const regionLabel = (regionRow[0]?.label as string) ?? slug;
-      // bogota-dc is a special case: its only "child" is itself (single muni)
-      // and the static doesn't add the children array on the leaf.
+      const childNodes = slug === "colombia"
+        ? departamentosLista.map((d) => ({ slug: d.slug, label: d.label }))
+        : subregLabels.map((m) => ({ slug: m.slug, label: m.label }));
       const isBogota = slug === "bogota-dc";
-      navs.nav_territorio = {
+      navTerritorio = {
         slug: "territorio",
         children: [
           {
             slug,
             label: regionLabel,
-            ...(isBogota
-              ? {}
-              : {
-                  children: subregLabels.map((m) => ({
-                    slug: m.slug,
-                    label: m.label,
-                  })),
-                }),
+            ...(isBogota ? {} : { children: childNodes }),
           },
         ],
       };
@@ -292,7 +215,10 @@ regionDetail.get("/:slug", async (c) => {
 
     const response: Record<string, unknown> = {
       general_info: generalInfo,
-      ...navs,
+      nav_tematica: navTematica,
+      nav_grupo_biologico: navGrupoBiologico,
+      nav_grupo_interes: navGrupoInteres,
+      nav_territorio: navTerritorio,
       gallery,
       slides,
       tematica,
