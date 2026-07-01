@@ -91,6 +91,26 @@ La aplicación lee de `data/sibdata.duckdb`, que **tú generas** con
 Ver `SETUP.md` §«Canalización de datos» para los detalles y para actualizar el
 corte sin editar código.
 
+### Cuidado: la estructura de temáticas afecta toda la navegación
+
+La tabla `tematica` define el árbol de temáticas que alimenta **la navegación
+del sitio y los filtros del explorador**. Cambiar su estructura en la fuente
+(relaciones `parent`/`slug`, el `orden`, o el campo `activa`) puede **romper la
+navegación de todo el sitio y ocultar categorías del explorador**.
+
+Puntos clave:
+
+- Solo se muestran las filas con **`activa = TRUE`**: el árbol de temáticas
+  (`/api/tematicas/tree`) filtra `WHERE activa = TRUE`. Si una subcategoría
+  llega como `FALSE`, desaparece del explorador (por ejemplo, los apéndices de
+  CITES o las subcategorías de exóticas).
+- Las correcciones se hacen **en la fuente de datos** (GitLab / hojas), no
+  editando archivos locales.
+- El archivo [`docs/tematica-muestra.csv`](./docs/tematica-muestra.csv) es una
+  **muestra de referencia** con una estructura conocida y correcta (incluye qué
+  filas deben quedar en `activa=TRUE`). Compárala con tu `tematica` de origen
+  antes de una resiembra de producción.
+
 ## Licencia
 
 Ver [`LICENSE`](./LICENSE).

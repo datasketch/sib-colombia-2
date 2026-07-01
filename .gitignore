@@ -19,9 +19,9 @@ node_modules/
 packages/web/dist/
 .vite/
 
-# Datos crudos de la semilla (descargas + hojas complementarias) — se
-# reconstruyen con `deno task seed`, no se versionan.
-packages/db/data-raw/
+# Descargas temporales de la semilla / cartografía
+packages/db/data-raw/downloads/
+packages/db/data-raw/db-cifras-sib/
 cartography/downloads/
 tmp/
 
