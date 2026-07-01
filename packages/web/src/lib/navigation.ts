@@ -5,7 +5,6 @@
 interface NavRegion {
   label: string;
   href: string;
-  isHighlighted?: boolean;
 }
 
 interface NavSubsection {
@@ -21,12 +20,6 @@ export interface NavItem {
   childs?: NavSubsection[];
 }
 
-export const HIGHLIGHTED_DEPARTMENTS = [
-  "boyaca", "narino", "tolima", "santander",
-  "amazonas", "caqueta", "guainia", "guaviare",
-  "putumayo", "vaupes", "meta",
-];
-
 export const navigationData: NavItem[] = [
   {
     label: "Colombia",
@@ -40,38 +33,38 @@ export const navigationData: NavItem[] = [
       {
         label: "Departamentos",
         children: [
-          { label: "Amazonas", href: "/amazonas", isHighlighted: true },
+          { label: "Amazonas", href: "/amazonas" },
           { label: "Antioquia", href: "/antioquia" },
           { label: "Arauca", href: "/arauca" },
           { label: "Atlántico", href: "/atlantico" },
           { label: "Bogotá D. C.", href: "/bogota-dc" },
           { label: "Bolívar", href: "/bolivar" },
-          { label: "Boyacá", href: "/boyaca", isHighlighted: true },
+          { label: "Boyacá", href: "/boyaca" },
           { label: "Caldas", href: "/caldas" },
-          { label: "Caquetá", href: "/caqueta", isHighlighted: true },
+          { label: "Caquetá", href: "/caqueta" },
           { label: "Casanare", href: "/casanare" },
           { label: "Cauca", href: "/cauca" },
           { label: "Cesar", href: "/cesar" },
           { label: "Chocó", href: "/choco" },
           { label: "Córdoba", href: "/cordoba" },
           { label: "Cundinamarca", href: "/cundinamarca" },
-          { label: "Guainía", href: "/guainia", isHighlighted: true },
-          { label: "Guaviare", href: "/guaviare", isHighlighted: true },
+          { label: "Guainía", href: "/guainia" },
+          { label: "Guaviare", href: "/guaviare" },
           { label: "Huila", href: "/huila" },
           { label: "La Guajira", href: "/la-guajira" },
           { label: "Magdalena", href: "/magdalena" },
           { label: "Meta", href: "/meta" },
-          { label: "Nariño", href: "/narino", isHighlighted: true },
+          { label: "Nariño", href: "/narino" },
           { label: "Norte de Santander", href: "/norte-santander" },
-          { label: "Putumayo", href: "/putumayo", isHighlighted: true },
+          { label: "Putumayo", href: "/putumayo" },
           { label: "Quindío", href: "/quindio" },
           { label: "Risaralda", href: "/risaralda" },
           { label: "San Andrés y Providencia", href: "/san-andres-providencia" },
-          { label: "Santander", href: "/santander", isHighlighted: true },
+          { label: "Santander", href: "/santander" },
           { label: "Sucre", href: "/sucre" },
-          { label: "Tolima", href: "/tolima", isHighlighted: true },
+          { label: "Tolima", href: "/tolima" },
           { label: "Valle del Cauca", href: "/valle-del-cauca" },
-          { label: "Vaupés", href: "/vaupes", isHighlighted: true },
+          { label: "Vaupés", href: "/vaupes" },
           { label: "Vichada", href: "/vichada" },
         ],
       },
@@ -159,7 +152,6 @@ export interface RegionDropdownItem {
   label: string;
   value: string;
   category?: string;
-  isHighlighted?: boolean;
 }
 
 export function getRegionsForDropdown(): RegionDropdownItem[] {
@@ -176,7 +168,6 @@ export function getRegionsForDropdown(): RegionDropdownItem[] {
             label: r.label,
             value: slug,
             category: cat.label,
-            isHighlighted: r.isHighlighted,
           });
         }
       }

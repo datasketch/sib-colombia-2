@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { navigationData, HIGHLIGHTED_DEPARTMENTS, type NavItem } from "../../lib/navigation";
+import { navigationData, type NavItem } from "../../lib/navigation";
 import { RegionSearchBox } from "./RegionSearchBox";
 
 interface Props {
@@ -257,7 +257,7 @@ function RegionBrowse({
 function RegionGrid({
   entries,
 }: {
-  entries: { label: string; href: string; isHighlighted?: boolean }[];
+  entries: { label: string; href: string }[];
 }) {
   if (entries.length === 0) return null;
 
@@ -276,26 +276,20 @@ function RegionGrid({
     >
       {columns.map((col, i) => (
         <div key={i} className="flex flex-col gap-y-2">
-          {col.map((r) => {
-            const slug = r.href.replace("/", "").split("/").pop() ?? "";
-            const highlighted = HIGHLIGHTED_DEPARTMENTS.includes(slug);
-            return (
-              <Link
-                key={r.href}
-                to={r.href === "#" ? "#" : r.href}
-                className={
-                  r.href === "#"
-                    ? "text-gray-400 cursor-not-allowed"
-                    : highlighted
-                    ? "text-dartmouth-green font-bold underline hover:text-flame"
-                    : "text-black hover:font-bold"
-                }
-                onClick={r.href === "#" ? (e) => e.preventDefault() : undefined}
-              >
-                {r.label}
-              </Link>
-            );
-          })}
+          {col.map((r) => (
+            <Link
+              key={r.href}
+              to={r.href === "#" ? "#" : r.href}
+              className={
+                r.href === "#"
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-black cursor-pointer hover:font-bold hover:text-dartmouth-green hover:underline"
+              }
+              onClick={r.href === "#" ? (e) => e.preventDefault() : undefined}
+            >
+              {r.label}
+            </Link>
+          ))}
         </div>
       ))}
     </div>

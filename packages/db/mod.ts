@@ -292,11 +292,33 @@ A non-zero exit means at least one shape drifted from the contract.
   // a normal seed run doesn't pull it in until everything is on disk.
   if (args.validate && !args["no-validate"]) {
     console.log(`\n=== Shape validation ===`);
-    // Point the API at the freshly written DB.
-    Deno.env.set("SIBDATA_DB_PATH", dbPath);
-    const { validateAllContracts, formatReport } = await import(
+    const { validateAllContracts, formatReport, CONTRACT_SLUGS } = await import(
       "../../scripts/lib/validate-shapes.ts"
     );
+    // The shape-contract fixtures (packages/api/static/<slug>.json) are a
+    // migration-era QA aid: they let us diff the live DuckDB output against the
+    // frozen legacy snapshots. They are stripped from the public deliverable,
+    // which computes every region from DuckDB. Validate only the slugs whose
+    // fixture is actually present, and skip the step entirely when none are —
+    // so a clean (fixture-free) seed doesn't print spurious "N/N drifted" noise.
+    const staticDir = join(__dirname, "..", "api", "static");
+    const presentSlugs: string[] = [];
+    for (const slug of CONTRACT_SLUGS) {
+      try {
+        if ((await Deno.stat(join(staticDir, `${slug}.json`))).isFile) {
+          presentSlugs.push(slug);
+        }
+      } catch { /* fixture absent — nothing to diff against */ }
+    }
+    if (presentSlugs.length === 0) {
+      console.log(
+        "Skipped — no contract fixtures present; regions are computed live from DuckDB.",
+      );
+      Deno.exit(0);
+    }
+
+    // Point the API at the freshly written DB.
+    Deno.env.set("SIBDATA_DB_PATH", dbPath);
     const regionDetail =
       (await import("../api/routes/region-detail.ts")).default;
 
@@ -309,7 +331,10 @@ A non-zero exit means at least one shape drifted from the contract.
       return await res.json();
     };
 
-    const report = await validateAllContracts(fetcher, { maxDiffsPerSlug: 12 });
+    const report = await validateAllContracts(fetcher, {
+      slugs: presentSlugs,
+      maxDiffsPerSlug: 12,
+    });
     console.log(formatReport(report));
 
     // Persist the report so routes can surface drift

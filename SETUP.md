@@ -43,6 +43,10 @@ sudo apt-get update
 sudo apt-get install -y curl unzip git ca-certificates
 ```
 
+> **macOS:** funciona igual; instala lo mismo con Homebrew
+> (`brew install deno git` — `unzip` y `curl` ya vienen con el sistema). El
+> resto de la guía (semilla, build, run, Docker) es idéntico.
+
 > **DuckDB** se instala solo: Deno descarga el binario precompilado
 > (`@duckdb/node-api`, variante `linux-x64` / `linux-arm64`) la primera vez que
 > se ejecuta la semilla o el servidor. En Ubuntu (glibc) no requiere compilador
@@ -239,11 +243,16 @@ curl -s http://localhost:3001/api/health      # {"ok":true,...}
 
 Comprobaciones rápidas en el navegador (`http://localhost:3001`):
 
-- Página principal (perfil de Colombia) con cifras y mapa.
-- Un perfil regional, p. ej. un departamento o un núcleo.
+- Página principal (perfil de Colombia): `http://localhost:3001/`
+- Un **departamento**: `/<slug>` — p. ej. `http://localhost:3001/boyaca`
+- Un **municipio**: `/<departamento>/<municipio>` — p. ej. `/boyaca/tunja`
+- Un **núcleo**: `/especial/<slug>` — p. ej. `/especial/nucleos-dfyb-agua-bonita`
 - El **Explorador**: filtra por región/grupo/temática y descarga (CSV/XLSX/JSON).
 
-Verificación del código (opcional): `deno task check` y `deno task test`.
+> El slug es la última parte de la URL (sin `/region/` ni prefijos). Las cifras,
+> los menús y los mapas se calculan en vivo desde DuckDB.
+
+Verificación del código (opcional): `deno task check`.
 
 ---
 

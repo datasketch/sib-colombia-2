@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { GeoJSON, MapContainer, useMap } from "react-leaflet";
 import type { Feature, FeatureCollection, Geometry } from "geojson";
+import L from "leaflet";
 import type { Layer, PathOptions } from "leaflet";
 import { scaleLinear } from "d3-scale";
 import "leaflet/dist/leaflet.css";
@@ -63,18 +64,11 @@ function featureLabel(feature: Feature<Geometry>): string {
 function FitBounds({ geojson }: { geojson: FeatureCollection }) {
   const map = useMap();
   useEffect(() => {
-    let cancelled = false;
-    import("leaflet").then((L) => {
-      if (cancelled) return;
-      const tmp = L.geoJSON(geojson);
-      const bounds = tmp.getBounds();
-      // animate:false suppresses the default 250ms zoom tween — the user
-      // wants the map to land on the right extent immediately on load.
-      if (bounds.isValid()) map.fitBounds(bounds, { padding: [20, 20], animate: false });
-    });
-    return () => {
-      cancelled = true;
-    };
+    const tmp = L.geoJSON(geojson);
+    const bounds = tmp.getBounds();
+    // animate:false suppresses the default 250ms zoom tween — the user
+    // wants the map to land on the right extent immediately on load.
+    if (bounds.isValid()) map.fitBounds(bounds, { padding: [20, 20], animate: false });
   }, [geojson, map]);
   return null;
 }
