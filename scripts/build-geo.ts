@@ -18,7 +18,7 @@
  * Tooling: Deno + npm. See cartography/docs/PIPELINE.md.
  */
 import * as shapefile from "npm:shapefile@0.6.6";
-import mapshaper from "npm:mapshaper@0.6.102";
+import mapshaper from "npm:mapshaper@0.7.33";
 import type { Feature, FeatureCollection, Geometry, Position } from "npm:@types/geojson@7946.0.14";
 import { dirname, fromFileUrl, join } from "https://deno.land/std@0.224.0/path/mod.ts";
 

@@ -22,7 +22,7 @@
     "file-saver": "^2.0.5",
     "leaflet": "^1.9.4",
     "react-leaflet": "^4.2.1",
-    "recharts": "^2",
+    "recharts": "^3",
     "xlsx": "^0.18.5",
     "zustand": "^4.5.5"
   },

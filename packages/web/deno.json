@@ -16,7 +16,7 @@
     "@tanstack/react-query": "npm:@tanstack/react-query@^5",
     "leaflet": "npm:leaflet@^1.9.4",
     "react-leaflet": "npm:react-leaflet@^4.2.1",
-    "recharts": "npm:recharts@^2",
+    "recharts": "npm:recharts@^3",
     "react-simple-maps": "npm:react-simple-maps@^3.0.0",
     "react-slick": "npm:react-slick@^0.30.2",
     "slick-carousel": "npm:slick-carousel@^1.8.1",

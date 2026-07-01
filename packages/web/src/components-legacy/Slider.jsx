@@ -1,6 +1,8 @@
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+// slick-theme.css ships the icon-font for default arrows/dots; both are
+// fully overridden here (custom SVG arrows, dots styled in index.css with
+// content: "" !important), and the font-face fetch 403s in dev. Unused.
 
 function SamplePrevArrow (props) {
   const { className, style, onClick, imagePath } = props
