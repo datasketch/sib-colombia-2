@@ -14,11 +14,18 @@ const MapDepartamentos = ({ data, isScale = false, departamentos = [] }) => {
   const departmentListRef = useRef()
   const departmentRefs = useRef(new Map())
 
+  // Match a map feature to its departamentos_lista entry by label. The map
+  // GeoJSON and the DB list can differ only in whitespace/case (e.g. the map
+  // says "Bogotá, D. C." but the list says "Bogotá, D.C."), which used to drop
+  // Bogotá's "Ver más" link (#48). Normalise before comparing.
+  const normLabel = (s) => (s ?? '').toString().normalize('NFC').replace(/\s+/g, '').toLowerCase()
+  const findDept = (label) => departamentos.find(d => normLabel(d.label) === normLabel(label))
+
   // Helper function to create popup content
   const createPopupContent = (feature) => {
     const value = mapType === 'species' ? (feature.properties.n_especies || 0) : (feature.properties.n_registros || 0)
     const label = mapType === 'species' ? 'especies' : 'observaciones'
-    const dept = departamentos.find(d => d.label === feature.properties.label)
+    const dept = findDept(feature.properties.label)
     const linkHtml = dept ? `<div class="mt-2"><a href="/${dept.slug}" target="_blank" class="text-green-600 hover:text-green-800 text-sm font-medium">Ver más →</a></div>` : ''
 
     return `
@@ -368,7 +375,7 @@ const MapDepartamentos = ({ data, isScale = false, departamentos = [] }) => {
                               {feature.properties.label}
                             </h4>
                             {(() => {
-                              const dept = departamentos.find(d => d.label === feature.properties.label)
+                              const dept = findDept(feature.properties.label)
                               return dept
                                 ? (
                                     <a

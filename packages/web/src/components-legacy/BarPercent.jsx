@@ -30,6 +30,12 @@ const BarPercent = ({ cat = '', label, region, regionparent, title, datatable = 
   const widthColEstimadas = calculateWidth(+speciesEstimadasCol - +parentEspecies, +speciesEstimadasCol)
 
   const capitalizeRegion = capitalize(regionparent)
+  // La Planada and Pialapí (reserva/resguardo) are the ONLY regions whose
+  // OBSERVED-species comparison is against their department (Nariño) rather
+  // than the country; both sit in Nariño. Every other region keeps comparing
+  // against Colombia. The ESTIMATED total stays Colombia for everyone. (#47)
+  const isReserveResguardo = ['La Planada', 'Pialapí Pueblo-Viejo'].includes(region)
+  const observadasLabel = isReserveResguardo ? 'Nariño' : 'Colombia'
 
   return (
     <div>
@@ -67,7 +73,7 @@ const BarPercent = ({ cat = '', label, region, regionparent, title, datatable = 
                       <span className="text-black-3">Especies totales observadas {capitalizeRegion} ({especiesObservadas})</span>
                       )
                     : (
-                      <span className='text-black-3'>Especies observadas Colombia({parentEspecies}) | Especies estimadas Colombia({speciesEstimadasCol}) </span>
+                      <span className='text-black-3'>Especies observadas {observadasLabel}({parentEspecies}) | Especies estimadas Colombia({speciesEstimadasCol}) </span>
                       )
                 }
               </p>

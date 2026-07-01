@@ -19,9 +19,12 @@ node_modules/
 packages/web/dist/
 .vite/
 
-# Descargas temporales de la semilla / cartografía
-packages/db/data-raw/downloads/
-packages/db/data-raw/db-cifras-sib/
+# Datos crudos de la semilla — TODO packages/db/data-raw/ lo reconstruye
+# `deno task seed` (descargas de GitLab en db-cifras-sib/ + downloads/, y las
+# hojas complementarias de Google Sheets en complementary/: glosario.csv,
+# preg_frecuentes.csv, banner_images.csv, etc.). No se versiona.
+# OJO: docs/tematica-muestra.csv NO cae aquí (vive en docs/) y SÍ se versiona.
+packages/db/data-raw/
 cartography/downloads/
 tmp/
 
